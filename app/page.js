@@ -1,3 +1,6 @@
+import Header from "../components/Header";
+import Logo from "../components/Logo";
+import Reveal from "../components/Reveal";
 const modules = [
   ["Fondamentaux du management", "Rôle du manager, organisation, prise de décision et leadership."],
   ["Marketing et stratégie commerciale", "Positionnement, offre, canaux de vente et relation client."],
@@ -17,41 +20,51 @@ const soon = [
   ["Finance et comptabilité", "Les bases financières indispensables pour décider avec clarté."],
   ["Leadership", "Développer son influence et conduire une équipe avec confiance."],
 ];
+const topics = ["Stratégie", "Finance", "Marketing", "Management", "Opérations", "Leadership"];
 export default function Home() {
   return (<>
-    <header className="hero"><div className="wrap">
-      <nav className="nav"><a className="logo" href="/">Académie</a>
-        <a className="btn sm ghost" href="/apply">Candidater</a></nav>
-      <div className="grid">
+    <Header />
+    <section className="hero">
+      <span className="orb o1" /><span className="orb o2" />
+      <div className="wrap grid">
         <div>
-          <p className="eyebrow">Programme en ligne</p>
-          <h1>Mini MBA : les compétences de gestion, sans les années d'études.</h1>
-          <p>Un parcours structuré pour comprendre la stratégie, la finance, le marketing et le management, animé par Slimane Khermous.</p>
-          <div className="cta"><a className="btn" href="/apply">Candidater maintenant</a><a className="btn ghost" href="#programme">Voir le programme</a></div>
+          <span className="pill">PROGRAMME EN LIGNE · PROMOTION OUVERTE</span>
+          <h1>Le <em>Mini MBA</em> pour décider et diriger avec assurance.</h1>
+          <p className="sub">Un parcours structuré en stratégie, finance, marketing et management, animé par Slimane Khermous. Accessible à distance, à votre rythme.</p>
+          <div className="cta"><a className="btn" href="/apply">Candidater maintenant</a><a className="btn ghost" href="#programme">Découvrir le programme</a></div>
         </div>
-        <div className="portrait"><img src="/slimane.jpg" alt="Slimane Khermous, formateur" />
-          <div className="tag"><b>Slimane Khermous</b><span>Formateur</span></div></div>
-      </div></div></header>
-    <div className="wrap"><div className="facts">
+        <div className="pwrap"><img src="/slimane.jpg" alt="Slimane Khermous, formateur" />
+          <div className="fl f1"><b>Slimane Khermous</b><span>Formateur</span></div>
+          <div className="fl f2"><b>100 % en ligne</b><span>Accès personnel</span></div></div>
+      </div>
+    </section>
+    <div className="mq"><div>{[...topics, ...topics, ...topics, ...topics].map((t, i) => <span key={i}>{t}</span>)}</div></div>
+    <div className="wrap"><Reveal><div className="facts">
       <div><small>Format</small><b>100 % en ligne</b></div><div><small>Langue</small><b>Français</b></div>
-      <div><small>Accès</small><b>Code personnel</b></div><div><small>Validation</small><b>Certificat</b></div></div></div>
+      <div><small>Accès</small><b>Code personnel</b></div><div><small>Validation</small><b>Certificat</b></div></div></Reveal></div>
     <section id="programme"><div className="wrap">
-      <p className="eyebrow">Programme</p><h2>Six modules pour piloter une organisation</h2>
-      <p className="lead">Une progression claire, de la théorie aux cas pratiques.</p>
-      {modules.map(([t, d], i) => (<details key={t}><summary>Module {i + 1} — {t}</summary><p>{d}</p></details>))}
+      <Reveal><p className="eyebrow">Programme</p><h2>Six modules pour piloter une organisation</h2>
+        <p className="lead">Une progression claire, de la théorie aux cas pratiques.</p></Reveal>
+      <div className="mods">{modules.map(([t, d], i) => (<Reveal key={t} delay={i * 70}><div className="mod"><div className="n">0{i + 1}</div><h3>{t}</h3><p>{d}</p></div></Reveal>))}</div>
     </div></section>
-    <section style={{ background: "#fff" }}><div className="wrap about">
-      <img src="/slimane.jpg" alt="Slimane Khermous" />
-      <div><p className="eyebrow">Votre formateur</p><h2>Slimane Khermous</h2>
-        <p className="lead">Ajoutez ici sa biographie : parcours, expérience professionnelle et ce qu'il apporte aux participants.</p></div>
+    <section id="formateur" className="alt"><div className="wrap about">
+      <Reveal><div className="pwrap"><img src="/slimane.jpg" alt="Slimane Khermous" /></div></Reveal>
+      <Reveal delay={120}><p className="eyebrow">Votre formateur</p><h2>Slimane Khermous</h2>
+        <p className="lead">Ajoutez ici sa biographie : parcours, expérience professionnelle et ce qu'il apporte aux participants.</p></Reveal>
     </div></section>
-    <section><div className="wrap"><p className="eyebrow">Comment ça marche</p><h2>De la candidature à l'accès</h2>
-      <div className="steps">{steps.map(([t, d]) => (<div className="step" key={t}><h3>{t}</h3><p>{d}</p></div>))}</div></div></section>
-    <section style={{ background: "#fff" }}><div className="wrap"><p className="eyebrow">Prochainement</p><h2>D'autres programmes arrivent</h2>
-      <p className="lead">Nous développons de nouvelles formations. Candidatez pour être informé de leur ouverture.</p>
-      <div className="soon">{soon.map(([t, d]) => (<div className="card" key={t}><em>Bientôt</em><h3>{t}</h3><p>{d}</p></div>))}</div></div></section>
-    <section className="dark"><div className="wrap"><h2>Prêt à commencer ?</h2><p>Les places sont attribuées après un échange avec notre équipe.</p><a className="btn" href="/apply">Candidater</a></div></section>
-    <footer><div className="wrap"><span>© 2026 Académie</span><span>Contact : à renseigner</span></div></footer>
+    <section id="parcours"><div className="wrap"><Reveal><p className="eyebrow">Comment ça marche</p><h2>De la candidature à l'accès</h2></Reveal>
+      <div className="steps">{steps.map(([t, d], i) => (<Reveal key={t} delay={i * 80}><div className="step"><i>{i + 1}</i><h3>{t}</h3><p>{d}</p></div></Reveal>))}</div></div></section>
+    <section id="bientot" className="alt"><div className="wrap"><Reveal><p className="eyebrow">Prochainement</p><h2>D'autres programmes arrivent</h2>
+      <p className="lead">Nous développons de nouvelles formations. Candidatez pour être informé de leur ouverture.</p></Reveal>
+      <div className="soon">{soon.map(([t, d], i) => (<Reveal key={t} delay={i * 80}><div className="card"><em>Bientôt</em><h3>{t}</h3><p>{d}</p></div></Reveal>))}</div></div></section>
+    <Reveal><div className="band"><span className="orb o1" style={{ width: 260, height: 260 }} />
+      <div style={{ position: "relative" }}><h2>Prêt à passer au niveau supérieur ?</h2>
+        <p>Les places sont attribuées après un échange avec notre équipe.</p><a className="btn" href="/apply">Candidater</a></div></div></Reveal>
+    <footer><div className="wrap"><div className="fg">
+      <div><Logo light /><p style={{ marginTop: 14, maxWidth: 320 }}>Des formations professionnelles en ligne, animées par des experts.</p></div>
+      <div><h4>Plateforme</h4><a href="/#programme">Programme</a><a href="/apply">Candidater</a><a href="/acces">Espace élève</a></div>
+      <div><h4>Contact</h4><a href="#">Email : à renseigner</a><a href="#">WhatsApp : à renseigner</a></div></div>
+      <div className="copy">© 2026 Académie. Tous droits réservés.</div></div></footer>
     <div className="sticky"><a className="btn" href="/apply">Candidater</a></div>
   </>);
 }
