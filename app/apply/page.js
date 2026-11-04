@@ -1,4 +1,5 @@
 "use client";
+import Logo from "../../components/Logo";
 import { useState } from "react";
 import { supabase } from "../../lib/supabase";
 export default function Apply() {
@@ -15,7 +16,7 @@ export default function Apply() {
     if (!error) e.target.reset();
   }
   return (<main className="wrap" style={{ padding: "32px 20px 80px" }}>
-    <a href="/" className="logo">Académie</a>
+    <Logo />
     <h1 style={{ textAlign: "center", fontSize: "2.2rem", margin: "40px 0 8px" }}>Candidature — Mini MBA</h1>
     <p className="lead" style={{ textAlign: "center", margin: "0 auto 28px" }}>Remplissez ce formulaire, nous vous contacterons pour la suite.</p>
     <form className="formbox" onSubmit={submit}>
